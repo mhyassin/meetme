@@ -12,6 +12,7 @@ namespace meetme.Entities
         public string name { set; get; }
         public string image { set; get; }
         public string email { set; get; }
+        public string password { set; get; }
         public int noOfMeetings { set; get; }
         public bool isOfficial { set; get; }
         public List<Guid> following { set; get; }
