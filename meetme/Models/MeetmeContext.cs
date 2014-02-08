@@ -19,7 +19,7 @@ namespace Meetme.Models
         public MeetmeContext()
             : base("name=MeetmeContext")
         {
-            Database.Connection.ConnectionString = "MeetmeContext";
+            //Database.Connection.ConnectionString = "MeetmeContext";
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
