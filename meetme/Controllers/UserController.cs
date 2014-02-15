@@ -15,14 +15,14 @@ namespace meetme.Controllers
 
         // GET api/user/5
         [HttpGet]
-        public string GetUser(Guid id)
+        public User GetUser(Guid id)
         {
             User user = dbModel.Users.FirstOrDefault(w => w.id.Equals(id));
             if (user != null)
             {
-                return Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                return user;
             }
-            return "null";
+            return null;
         }
 
         [HttpPost]
