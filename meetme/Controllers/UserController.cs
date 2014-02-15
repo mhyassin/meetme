@@ -32,7 +32,7 @@ namespace meetme.Controllers
             List<User> user = dbModel.Users.Where(w => w.email.Equals(test.email) && w.password.Equals(test.password)).ToList();
             if (user.Count > 0)
             {
-                return user[0].id.ToString();
+                return Newtonsoft.Json.JsonConvert.SerializeObject(user[0]);
             }
             return "false";
         }
