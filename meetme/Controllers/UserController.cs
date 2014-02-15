@@ -38,12 +38,12 @@ namespace meetme.Controllers
         }
 
         [HttpPost]
-        public string Register(User test)
+        public User Register(User test)
         {
             List<User> users = dbModel.Users.Where(w => w.email.Equals(test.email)).ToList();
             if (users.Count > 0)
             {
-                return "Already Registered";
+                return null;
             }
             User user = new User();
             user.id = Guid.NewGuid();
@@ -60,11 +60,11 @@ namespace meetme.Controllers
             {
                 dbModel.Users.Add(user);
                 dbModel.SaveChanges();
-                return "true";
+                return user;
             }
             catch (Exception e)
             {
-                return "false";
+                return null;
             }
         }
 
