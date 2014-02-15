@@ -27,15 +27,14 @@ namespace meetme.Controllers
 
         [HttpPost]
         // POST api/user
-        public string Login(User test)
+        public User Login(User test)
         {
             List<User> user = dbModel.Users.Where(w => w.email.Equals(test.email) && w.password.Equals(test.password)).ToList();
             if (user.Count > 0)
             {
-                User currentUser = user[0];
-                return Newtonsoft.Json.JsonConvert.SerializeObject(currentUser);
+                return user[0];
             }
-            return "false";
+            return null;
         }
 
         [HttpPost]
