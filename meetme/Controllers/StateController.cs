@@ -39,9 +39,30 @@ namespace meetme.Controllers
         [HttpPost]
         public bool AddState(State state)
         {
+            State test = new State();
+            test.id = Guid.NewGuid();
+
+            User firstuser = dbModel.Users.FirstOrDefault(w => w.id.Equals(state.UserId.id));
+            if (state.OtherUserId != null)
+            {
+                User seconduser = dbModel.Users.FirstOrDefault(w => w.id.Equals(state.UserId.id));
+                test.OtherUserId = seconduser;
+            }
+            else
+            {
+                MeetingRoom room = dbModel.MeetingRooms.FirstOrDefault(w => w.id.Equals(state.RoomId.id));
+                test.RoomId = room;
+            }
+
+            test.UserId = firstuser;
+            test.isRoom = state.OtherUserId == null ? true : false;
+            test.isOfficial = state.OtherUserId == null ? true : false;
+            test.startDate = DateTime.UtcNow;
+            test.duration = 0;
+            
             try
             {
-                dbModel.States.Add(state);
+                dbModel.States.Add(test);
                 dbModel.SaveChanges();
                 return true;
             }
