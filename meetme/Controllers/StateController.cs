@@ -16,7 +16,7 @@ namespace meetme.Controllers
         public List<State> GetFeed(Guid id)
         {
             User user = dbModel.Users.FirstOrDefault(w => w.id.Equals(id));
-            List<State> feed = dbModel.States.Where(w=> user.following.Contains(w.UserId.id)).ToList();
+            List<State> feed = dbModel.States.Where(w=> user.following.Contains(w.UserId.id) || user.following.Contains(w.OtherUserId.id)).ToList();
             if (feed != null)
             {
                 return feed;
