@@ -23,5 +23,20 @@ namespace meetme.Controllers
             }
             return null;
         }
+
+        [HttpPost]
+        public bool AddState(State state)
+        {
+            try
+            {
+                dbModel.States.Add(state);
+                dbModel.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }
